@@ -20,9 +20,9 @@ public class StoreController {
     public List<Product> saveProducts(@RequestBody List<Product> products) {
         return storeService.saveProducts(products);
     }
-    @PostMapping("/addProductQty")
-    public ProductResponse addProductQty(@RequestBody Product products) throws ProductNotFoundException {
-        return storeService.addProductQty(products);
+    @PostMapping("/addProduct")
+    public ProductResponse addProduct(@RequestBody Product products) {
+        return storeService.addProduct(products);
     }
     @GetMapping("/getProductByProductId/{productId}")
     public Optional<Product> getProductByProductId(@PathVariable int productId) throws ProductNotFoundException{

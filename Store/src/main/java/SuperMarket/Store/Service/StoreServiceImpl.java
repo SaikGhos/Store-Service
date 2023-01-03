@@ -21,18 +21,19 @@ public class StoreServiceImpl implements StoreService{
         return productRepository.saveAll(products);
     }
     @Override
-    public ProductResponse addProductQty(Product product) throws ProductNotFoundException {
+    public ProductResponse addProduct(Product product) {
 
         Optional<Product> pdt = productRepository.findByProductId(product.getProductId());
         if(!pdt.isPresent()) {
-            throw new ProductNotFoundException("Product with productId " + product.getProductId() + "is not there in store, recommend to save the product.");
+            productRepository.save(product);
+            return new ProductResponse(product.getProductId(), product.getProductName(), product.getQty(),
+                    product.getQty() + " units of " + product.getProductName() + " has been added.");
         } else {
             Product updatedProduct = new Product(product.getProductId(), product.getProductName(),
                     pdt.get().getQty() + product.getQty());
             productRepository.save(updatedProduct);
-            ProductResponse productResponse = new ProductResponse(updatedProduct.getProductId(), updatedProduct.getProductName(), updatedProduct.getQty(),
+            return new ProductResponse(updatedProduct.getProductId(), updatedProduct.getProductName(), updatedProduct.getQty(),
                     product.getQty() + " units of " + product.getProductName() + " has been added.");
-            return productResponse;
         }
     }
 

@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface StoreService {
     public List<Product> saveProducts(List<Product> products);
-    public ProductResponse addProductQty(Product product) throws ProductNotFoundException ;
+    public ProductResponse addProduct(Product product);
     public Optional<Product> getProductByProductId(int productId) throws ProductNotFoundException;
     public List<Product> getAllProducts();
     public String[] checkingAvailabilityOfProducts(List<Product> products) throws ProductNotFoundException;
