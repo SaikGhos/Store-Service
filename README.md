@@ -12,3 +12,7 @@ It shows –
 - whether the product is there in the store or not,
 - if it’s there is the desired quantity is there or not,
 - if the desired quantity is not there for by much quantity the store is short of that item from the desired quantity.
+
+04: Using updateUsingTTL one can update the data using TTL (Time to Live). So after specified “TTL” the data will be deleted.
+
+05: Using insertUsingCsv_file one can insert a set of data in the CSV format into the database.
