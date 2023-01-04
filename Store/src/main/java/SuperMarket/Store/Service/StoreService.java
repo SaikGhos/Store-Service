@@ -15,4 +15,7 @@ public interface StoreService {
     public String[] checkingAvailabilityOfProducts(List<Product> products) throws ProductNotFoundException;
 
 
+    public void updateUsingTTL(Product product) throws ProductNotFoundException ;
+
+    public String processCsvData(List<Product> csvToBean);
 }

@@ -3,11 +3,7 @@ package SuperMarket.Store.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
-import org.springframework.data.cassandra.core.mapping.CassandraType;
-import org.springframework.data.cassandra.core.mapping.Column;
-import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
-import org.springframework.data.cassandra.core.mapping.Table;
+import org.springframework.data.cassandra.core.mapping.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -20,14 +16,14 @@ public class Product {
 
 
     @NotNull
-    @PrimaryKeyColumn(name = "ProductId", ordinal = 0, type = PrimaryKeyType.PARTITIONED)
+    @PrimaryKey(value = "product_id")
     private int productId;
     @NotBlank
-    @Column("Name")
+    @Column("name")
     @CassandraType(type = CassandraType.Name.TEXT)
     private String productName;
     @NotNull
-    @Column("InStock")
+    @Column("in_stock")
     @CassandraType(type = CassandraType.Name.INT)
     private int qty;
 

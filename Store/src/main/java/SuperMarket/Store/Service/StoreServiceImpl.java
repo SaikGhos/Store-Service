@@ -69,5 +69,27 @@ public class StoreServiceImpl implements StoreService{
         return comment;
     }
 
+    @Override
+    public void updateUsingTTL(Product product) throws ProductNotFoundException {
+        boolean exists = productRepository.existsByProductId(product.getProductId());
+        if (exists) {
+            productRepository.updateUsingTTL(product.getProductId(),
+                    product.getProductName(), product.getQty());
+        } else {
+            try {
+                throw new ProductNotFoundException("Product with product id " + product.getProductId() + " is not there.");
+            } catch (ProductNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    @Override
+    public String processCsvData(List<Product> pdtList) {
+        productRepository.saveAll(pdtList);
+        //openCsvRepository.save(empList);
+        return "Saved CSV data successfully";
+    }
+
 
 }
